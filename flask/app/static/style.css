@@ -1,3 +1,92 @@
-h1 {
-    color: red;
+div {
+    width: 545px;
+    margin: auto;
+}
+.div_insert{
+    width: 500px;
+    margin: auto;
+}
+.div_space{
+    height: 20px;
+}
+.div_space_sub{
+    height: 8px;
+}
+.div_box{
+    border: 2px solid #7099adb7;
+    background-color: #7099ad18;
+    width: auto;
+    height: auto;
+    float: left;
+    padding: 5px;
+    margin: 13.2px;
+    font-size: 11px;
+    font-weight: bold;
+    color: #7099ad;
+}
+
+/* .form_box{
+    border: 2px solid #7099adb7;
+    background-color: #7099ad18;
+    width: auto;
+    height: auto;
+    padding: 40px;
+    margin: 13.2px;
+    font-size: 11px;
+    font-weight: bold;
+    color: #7099ad;
+} */
+
+label {
+    font-size: 10px;
+    color: #666666;
+}
+
+img { 
+    width : 100%;
+    height: 100%;
+    margin: auto;
+}
+
+.gb {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+}
+
+hr {
+    border: 1px solid #666666;
+}
+
+.hr_sky_3px{
+    border: 3px solid #7099ad;
+}
+
+.hr_sky_1px{
+    border: 1px solid #7099ad;
+}
+
+.hashtag {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+p {
+    font-size: 10px;
+    margin: auto;
+}
+.p_main{
+    font-size: 14.5px;
+}
+.p_sub{
+    font-size: 14.5px;
+    font-weight: bolder;
+}
+
+.span_like{
+    position: relative;
+    top: -40%;
+    font-weight: bolder;
+    padding: 15px;
 }
