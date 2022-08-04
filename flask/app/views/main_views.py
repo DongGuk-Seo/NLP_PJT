@@ -6,18 +6,30 @@ from tensorflow.keras.preprocessing.text import Tokenizer
 from konlpy.tag import Mecab
 
 mecab = Mecab()
-xtrain = list(np.load('../xtrain.txt.npy',allow_pickle=True))
+xtrain = list(np.load('../xtrain_add.txt.npy',allow_pickle=True))
 tokenizer = Tokenizer()
 tokenizer.fit_on_texts(xtrain)
-loaded_model = load_model('../model/mecab_epoch-10_bat-64_maskoff_stoff_leoff_loss-4005_acc-8237.h5')
-tokenizer = Tokenizer(23134)
+threshold = 3
+total_cnt = len(tokenizer.word_index) 
+rare_cnt = 0
+total_freq = 0
+rare_freq = 0
+
+for key, value in tokenizer.word_counts.items():
+    total_freq = total_freq + value
+
+    if(value < threshold):
+        rare_cnt = rare_cnt + 1
+        rare_freq = rare_freq + value
+        
+tokenizer = Tokenizer(total_cnt - rare_cnt + 1)
 tokenizer.fit_on_texts(xtrain)
 X_train = tokenizer.texts_to_sequences(xtrain)
 
+loaded_model = load_model('../model/mecab_epoch-15_bat-64_th-3_acc-8556_add.h5')
 
 def pr(new_sentence):
-    # 입력된 데이터 전처리
-    new_sentence = mecab.morphs(new_sentence)# # 토큰화
+    new_sentence = mecab.morphs(new_sentence) # 토큰화
     new_sentence = [word for word in new_sentence] # 불용어 제거
     encoded = tokenizer.texts_to_sequences([new_sentence]) # 정수 인코딩
     pad_new = pad_sequences(encoded, maxlen = 30) # 패딩
@@ -35,6 +47,7 @@ def result():
     if request.method == 'POST':
         word = request.form['query']
         result = pr(word)
+        print(result)
         return render_template('index.html',word=word, result=result)
     else:
         return render_template('index.html')

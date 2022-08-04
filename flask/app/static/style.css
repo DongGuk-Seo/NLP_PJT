@@ -24,7 +24,10 @@ div {
     font-weight: bold;
     color: #7099ad;
 }
-
+.headline {
+    display: flex;
+    justify-content: center;
+}
 /* .form_box{
     border: 2px solid #7099adb7;
     background-color: #7099ad18;
