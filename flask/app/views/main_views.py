@@ -1,9 +1,12 @@
 import numpy as np
-from flask import Blueprint, render_template, request
+from flask import Blueprint, redirect, render_template, request, url_for
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from tensorflow.keras.preprocessing.text import Tokenizer
 from konlpy.tag import Mecab
+import torch
+from torch.utils.data import Dataset, DataLoader
+
 
 mecab = Mecab()
 xtrain = list(np.load('../xtrain_add.txt.npy',allow_pickle=True))
@@ -51,3 +54,12 @@ def result():
         return render_template('index.html',word=word, result=result)
     else:
         return render_template('index.html')
+# @bp.route('/',methods = ['POST', 'GET'])
+# def result():
+#     if request.method == 'POST':
+#         word = request.form['query']
+#         result = pr(word)
+#         print(result)
+#         return redirect(f'{url_for('result',word=word, result=result)}#query')
+#     else:
+#         return render_template('index.html')

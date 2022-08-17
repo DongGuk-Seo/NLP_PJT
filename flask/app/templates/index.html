@@ -11,7 +11,13 @@
         const word = '{{word}}'
         const result = '{{result}}'
         if (result >= 0.5){
-            alert(`악플로 의심되는 댓글입니다. 다시 작성하세요`);
+            var confirmflag = confirm("악플로 의심되는 댓글입니다.\n실명이 공개됩니다.");
+            if(confirmflag){
+                alert("실명으로 댓글을 남겼습니다.");
+            }else{
+                alert("댓글 입력을 취소 하셨습니다.");
+            }
+            //alert(`악플로 의심되는 댓글입니다. 다시 작성하세요`);
         }
     </script>
 </head>
@@ -87,6 +93,7 @@
                 accept-charset="utf-8"
                 method="post">
             <input  type="text"
+                    id="query"
                     name="query"
                     style=" text-align: left;
                             vertical-align: top;
